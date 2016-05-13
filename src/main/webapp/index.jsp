@@ -26,7 +26,7 @@
 	app.controller('demoController', function($scope, demoService) {
 		demoService.getDataSeriveExample().then(function(response) {
 			$scope.x=response;
-			//alert(JSON.stringify(response));
+			alert(JSON.stringify(response));
 		});
 	});
 </script>
@@ -35,7 +35,7 @@
 	<div ng-controller="demoController">
 		<div>
 			<ul>
-				<li ng-repeat="y in x">{{ y }}</li>
+				<li ng-repeat="y in x.data">{{ y.name }}</li>
 			</ul>
 		</div>
 	</div>
