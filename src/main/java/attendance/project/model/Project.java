@@ -1,4 +1,4 @@
-package attendance.model;
+package attendance.project.model;
 
 import java.io.Serializable;
 

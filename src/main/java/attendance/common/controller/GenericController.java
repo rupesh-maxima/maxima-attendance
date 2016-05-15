@@ -1,9 +1,9 @@
-package attendance.services;
+package attendance.common.controller;
 
 import java.util.List;
 import java.util.Map;
 
-public interface ObjectService<T> {
+public interface GenericController<T> {
 	T add(T newObject) throws Exception;
 
 	void update(T existingObj);

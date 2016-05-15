@@ -1,4 +1,4 @@
-package attendance.services.impl;
+package attendance.common.impl;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import attendance.services.ObjectService;
+import attendance.common.controller.GenericController;
 
-public abstract class ObjectServiceImpl<T> implements ObjectService<T> {
+public abstract class GenericControllerImpl<T> implements GenericController<T> {
 	@Autowired
 	EntityManagerFactory manager;
 	protected EntityManager entityManager;

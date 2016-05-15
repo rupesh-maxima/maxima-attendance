@@ -1,4 +1,4 @@
-package attendance.services;
+package attendance.project.controller;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import attendance.model.Project;
+import attendance.project.model.Project;
 
 @Controller
-public interface ProjectService {
+public interface ProjectController {
 	@RequestMapping(value = "/project/add", method = RequestMethod.POST)
 	@ResponseBody Project add(@RequestBody Project project);
 
@@ -25,7 +25,7 @@ public interface ProjectService {
 	@RequestMapping(value = "/project/getAll", method = RequestMethod.POST)
 	@ResponseBody List<Project> getAll(@RequestBody List<Long> ids);
 
-	@RequestMapping(value = "/projectList", method=RequestMethod.GET)
+	@RequestMapping(value = "/project/list", method=RequestMethod.GET)
 	@ResponseBody List<Project> list();
 
 	@RequestMapping(value = "/project/search", method = RequestMethod.POST)

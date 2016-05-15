@@ -1,4 +1,4 @@
-package attendance.services.impl;
+package attendance.project.impl;
 
 
 import java.util.HashMap;
@@ -7,11 +7,12 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
-import attendance.model.Project;
-import attendance.services.ProjectService;
+import attendance.common.impl.GenericControllerImpl;
+import attendance.project.controller.ProjectController;
+import attendance.project.model.Project;
 
 @Controller
-public class ProjectServiceImpl extends ObjectServiceImpl<Project> implements ProjectService {
+public class ProjectControllerImpl extends GenericControllerImpl<Project> implements ProjectController {
 	@Override
 	public Class<Project> getObjectClass() {
 		return Project.class;

@@ -14,13 +14,20 @@
 		};
 
 		this.getDataSeriveExample = function() {
-			var promise = $http.get('projectList').success(
+			var promise = $http.get('project/list').success(
 					function(data, status, headers, config) {
 						return data;
 					});
 
 			return promise;
 		};
+		function studentController($scope,$http) {
+            var url = "data.txt";
+         
+            $http.get(url).success( function(response) {
+               $scope.students = response;
+            });
+         }
 	});
 
 	app.controller('demoController', function($scope, demoService) {
