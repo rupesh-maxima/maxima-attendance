@@ -4,14 +4,14 @@ package attendance.project.impl;
 import java.util.HashMap;
 import java.util.List;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RestController;
 
 import attendance.common.impl.GenericControllerImpl;
 import attendance.project.controller.ProjectController;
 import attendance.project.model.Project;
 
-@Controller
+@RestController
 public class ProjectControllerImpl extends GenericControllerImpl<Project> implements ProjectController {
 	@Override
 	public Class<Project> getObjectClass() {
