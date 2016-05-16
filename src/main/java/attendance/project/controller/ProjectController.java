@@ -29,7 +29,7 @@ public interface ProjectController {
 	@ResponseBody List<Project> list();
 
 	@RequestMapping(value = "/project/search", method = RequestMethod.POST)
-	@ResponseBody List<Project> search(@RequestBody String fieldName, @RequestBody Object value);
+	@ResponseBody List<Project> search(@RequestBody String json);
 
 	@RequestMapping(value = "/project/delete", method = RequestMethod.POST)
 	void delete(@RequestParam(name = "id") Long id);

@@ -18,7 +18,7 @@ public interface GenericController<T> {
 
 	List<T> list();
 
-	List<T> search(String fieldName, Object value);
+	List<T> search(String fieldName);
 
 	List<T> search(String whereClause, Map<String, Object> params);
 
