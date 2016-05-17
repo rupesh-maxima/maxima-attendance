@@ -1,5 +1,7 @@
 package attendance.user.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 
 import attendance.common.impl.GenericControllerImpl;
@@ -8,7 +10,8 @@ import attendance.user.model.LoginObject;
 import attendance.user.model.User;
 
 @Controller
-public class UserControllerImpl extends GenericControllerImpl<User> implements UserController {
+public class UserControllerImpl extends GenericControllerImpl<User> implements
+		UserController {
 	@Override
 	public Class<User> getObjectClass() {
 		return User.class;
@@ -16,12 +19,20 @@ public class UserControllerImpl extends GenericControllerImpl<User> implements U
 
 	@Override
 	public LoginObject login(User user) {
-		if ("x".equals(user.getUsername()) && "x".equals(user.getPassword())) {
-			LoginObject loginObject = new LoginObject();
-			loginObject.setName("X Men");
-			loginObject.setType("ADMINISTRATOR");
-			return loginObject;
+		List<User> result = entityManager
+				.createQuery(
+						"from "
+								+ getObjectClass().getName()
+								+ " where username =(:username) and password=(:password)",
+						getObjectClass())
+				.setParameter("username", user.getUsername())
+				.setParameter("password", user.getPassword()).getResultList();
+		LoginObject loginObject = null;
+		if (result != null && !result.isEmpty()) {
+			loginObject = new LoginObject();
+			loginObject.setName(result.get(0).getName());
+			loginObject.setType(result.get(0).getType());
 		}
-		return oginObject;
+		return loginObject;
 	}
 }
