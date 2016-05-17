@@ -13,17 +13,15 @@ import attendance.user.model.User;
 @Controller
 public interface UserController {
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	@ResponseBody
 	User add(@RequestBody User User);
 
 	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
 	void update(@RequestBody User existingObj);
 
-	@RequestMapping(value = "/user/get", method = { RequestMethod.GET, RequestMethod.POST })
-	@ResponseBody
-	User get(@RequestParam(name = "id") Long id);
+
+    @RequestMapping(value = "/user/get", method =RequestMethod.POST )
+	User get(@RequestBody String name);
 	
 	@RequestMapping(value = "/user/login", method = {RequestMethod.POST })
-	@ResponseBody
 	LoginObject login(@RequestBody User user);
 }

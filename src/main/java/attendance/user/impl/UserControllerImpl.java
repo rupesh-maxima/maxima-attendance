@@ -35,4 +35,10 @@ public class UserControllerImpl extends GenericControllerImpl<User> implements
 		}
 		return loginObject;
 	}
+	
+	@Override
+	public User get(String name) {
+		User admin = (User) entityManager.find(User.class, name);
+		return admin;
+	}
 }
