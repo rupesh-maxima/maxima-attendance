@@ -3,13 +3,14 @@ package attendance.user.impl;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 import attendance.common.impl.GenericControllerImpl;
 import attendance.user.controller.UserController;
 import attendance.user.model.LoginObject;
 import attendance.user.model.User;
 
-@Controller
+@RestController
 public class UserControllerImpl extends GenericControllerImpl<User> implements
 		UserController {
 	@Override
