@@ -36,3 +36,8 @@ public interface HolidayController {
 	void deleteAll(@RequestBody List<Long> ids);
 
 }
+
+
+
+
+
