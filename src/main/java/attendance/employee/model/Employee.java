@@ -1,0 +1,72 @@
+package attendance.employee.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import attendance.project.model.Project;
+
+@Entity
+public class Employee implements Serializable {
+	private static final long serialVersionUID = 1L;
+	@Id
+	private Integer id;
+	private String firstName;
+	private String lastName;
+	private Integer employeeId;
+	private Boolean active;
+	@ManyToOne
+	@JoinColumn(name = "projectId")
+	private Project project;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Employee && this.employeeId.equals(((Employee) obj).getEmployeeId())) {
+			return true;
+		}
+		return false;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public Integer getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(Integer employeeId) {
+		this.employeeId = employeeId;
+	}
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+}
