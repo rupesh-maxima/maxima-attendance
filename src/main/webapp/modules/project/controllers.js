@@ -1,7 +1,11 @@
 'use strict';
-	angular.module('Project').controller('ProjectController', function($scope, ProjectService) {
-	$scope.checked=true;
+angular.module('Project').controller('ProjectController', function($scope, ProjectService) {
 	$scope.id = 1;
-	$scope.data = ProjectService.get($scope.id);
-	console.log('data: '+ $scope.data);
+	ProjectService.list($scope.id,function(response) {
+        if(response.success) {
+        	alert(JSON.stringify(response));
+        } else {
+        	alert(JSON.stringify(response));
+        }
+    });
 });
