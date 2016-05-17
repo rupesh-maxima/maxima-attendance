@@ -23,13 +23,13 @@
 		};
 		function studentController($scope,$http) {
             var url = "data.txt";
-         
             $http.get(url).success( function(response) {
                $scope.students = response;
             });
          }
+       
 	});
-
+	
 	app.controller('demoController', function($scope, demoService) {
 		demoService.getDataSeriveExample().then(function(response) {
 			$scope.x=response;
@@ -48,3 +48,4 @@
 	</div>
 </body>
 </html>
+

@@ -2,11 +2,13 @@
 
 // declare modules
 angular.module('Authentication', []);
-angular.module('Home', []);
+angular.module('Home',[]);
+angular.module('Project',[]);
 
 angular.module('BasicHttpAuthExample', [
     'Authentication',
     'Home',
+    'Project',
     'ngRoute',
     'ngCookies'
 ])
@@ -19,12 +21,20 @@ angular.module('BasicHttpAuthExample', [
             templateUrl: 'modules/authentication/views/login.html',
             hideMenus: true
         })
+        
+        .when('/project', {
+            controller: 'ProjectController',
+            templateUrl: 'modules/project/views/project.html'
+        })
  
         .when('/', {
             controller: 'HomeController',
-            templateUrl: 'modules/home/views/home.html'
+            templateUrl: 'modules/home/views/home.html',
         })
  
+        
+        
+   
         .otherwise({ redirectTo: '/login' });
 }])
  
@@ -33,7 +43,7 @@ angular.module('BasicHttpAuthExample', [
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
+            $http.defaults.headers.common['Authkorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
         }
  
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
