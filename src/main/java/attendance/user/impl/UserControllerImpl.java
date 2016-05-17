@@ -22,6 +22,6 @@ public class UserControllerImpl extends GenericControllerImpl<User> implements U
 			loginObject.setType("ADMINISTRATOR");
 			return loginObject;
 		}
-		return null;
+		return oginObject;
 	}
 }
