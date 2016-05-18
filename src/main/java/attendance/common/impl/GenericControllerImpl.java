@@ -8,7 +8,6 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.TypedQuery;
 
 import org.json.JSONObject;
@@ -17,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import attendance.common.controller.GenericController;
 
-public abstract class GenericControllerImpl<T> implements GenericController<T>  {
+public abstract class GenericControllerImpl<T> implements GenericController<T> {
 	@Autowired
 	EntityManagerFactory manager;
 	protected EntityManager entityManager;
@@ -33,7 +32,6 @@ public abstract class GenericControllerImpl<T> implements GenericController<T>  
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(newObject);
-			entityManager.getTransaction().commit();
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
 			throw e;
@@ -52,6 +50,7 @@ public abstract class GenericControllerImpl<T> implements GenericController<T>  
 		entityManager.merge(existingObj);
 		entityManager.getTransaction().commit();
 	}
+
 	@Override
 	public T get(Long id) {
 		List<T> resultList = getAll(Arrays.asList(id));

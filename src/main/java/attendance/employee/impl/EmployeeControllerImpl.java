@@ -13,4 +13,3 @@ public class EmployeeControllerImpl extends GenericControllerImpl<Employee> impl
 		return Employee.class;
 	}
 }
-
