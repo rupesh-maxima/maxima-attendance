@@ -1,7 +1,6 @@
 'use strict';
-angular.module('Project').controller('ProjectController', function($scope, ProjectService) {
-	ProjectService.list(function(response) {
-
+angular.module('Holidays').controller('HolidaysController', function($scope, HolidaysService) {
+	HolidaysService.list(function(response) {
         if(response.success) {
         	alert(JSON.stringify(response));
         } else {
@@ -10,4 +9,3 @@ angular.module('Project').controller('ProjectController', function($scope, Proje
     });
 	
 });
-
