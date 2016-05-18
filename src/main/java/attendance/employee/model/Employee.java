@@ -21,15 +21,12 @@ public class Employee implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "projectId")
 	private Project project;
-
 	public Project getProject() {
 		return project;
 	}
-
 	public void setProject(Project project) {
 		this.project = project;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Employee && this.employeeId.equals(((Employee) obj).getEmployeeId())) {
