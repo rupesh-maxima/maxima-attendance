@@ -12,7 +12,5 @@ public class EmployeeControllerImpl extends GenericControllerImpl<Employee> impl
 	public Class<Employee> getObjectClass() {
 		return Employee.class;
 	}
- 
-	
 }
 

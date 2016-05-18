@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import attendance.employee.model.Employee;
-import attendance.project.model.Project;
 
 @RestController
 public interface EmployeeController {
