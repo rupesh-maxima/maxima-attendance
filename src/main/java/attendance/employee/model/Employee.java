@@ -13,7 +13,7 @@ import attendance.project.model.Project;
 public class Employee implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	private Integer id;
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private Integer employeeId;
@@ -54,11 +54,11 @@ public class Employee implements Serializable {
 		this.employeeId = employeeId;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
