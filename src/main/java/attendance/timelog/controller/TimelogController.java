@@ -38,7 +38,7 @@ public interface TimelogController {
 	void deleteAll(@RequestBody List<Long> ids);
 	
 	@RequestMapping(value = "/timelog/setWorkfromHome", method = RequestMethod.POST)
-	void setWorkfromHome(@RequestBody List<Long> employeeIds);
+	void setWorkfromHome(@RequestBody String json);
 	
 	@RequestMapping(value = "/timelog/getWorkfromHome", method = RequestMethod.POST)
 	List<Employee> getWorkfromHome(@RequestBody Date recordDate);
@@ -47,7 +47,7 @@ public interface TimelogController {
 	List<Employee> getOnLeave(@RequestBody Date recordDate);
 	
 	@RequestMapping(value = "/timelog/setOnLeave", method = RequestMethod.POST)
-	void setOnLeave(@RequestBody List<Long> employeeIds);
+	void setOnLeave(@RequestBody String json);
 	
 	@RequestMapping(value = "/timelog/login", method = RequestMethod.POST)
 	void login(@RequestBody Long employeeId);
@@ -63,4 +63,16 @@ public interface TimelogController {
 	
 	@RequestMapping(value = "/timelog/getForUserForCurrentDate", method = RequestMethod.POST)
 	Timelog getForUserForCurrentDate(@RequestBody Long employeeId);
+
+	@RequestMapping(value = "/timelog/getAllTimeLogsForEmployeesForMonth", method = RequestMethod.POST)
+	List<Timelog> getAllTimeLogsForEmployeesForMonth(@RequestBody String json);
+
+	@RequestMapping(value = "/timelog/getAllTimeLogsForEmployeesForDate", method = RequestMethod.POST)
+	List<Timelog> getAllTimeLogsForEmployeesForDate(@RequestBody String json);
+
+	@RequestMapping(value = "/timelog/getForUserForDate", method = RequestMethod.POST)
+	Timelog getForUserForDate(@RequestBody String json);
+
+	@RequestMapping(value = "/timelog/getLastLoggedInRecord", method = RequestMethod.POST)
+	Timelog getLastLoggedInRecord(Long employeeId);
 }

@@ -5,23 +5,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.IdClass;
 
 import attendance.employee.model.Employee;
 
 @Entity
+@IdClass(TimelogKey.class)
 public class Timelog implements Serializable {
 	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(unique = true, nullable = false)
-	private Long id;
-	@Column(columnDefinition = "date")
 	private Date recordDate;
+	@Id
+	private Employee employee;
 
 	private Date loginTime;
 	private Date logoutTime;
@@ -31,27 +28,23 @@ public class Timelog implements Serializable {
 	private Boolean absent;
 	private Boolean onLeave;
 
-	@ManyToOne
-	@JoinColumn(name = "employeeId")
-	private Employee employee;
-
 	@Column(length = 150)
 	private String comment;
 
-	public Long getId() {
-		return id;
+	public Timelog() {
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public Date getRecordDate() {
-		return recordDate;
-	}
-
-	public void setRecordDate(Date recordDate) {
+	public Timelog(Date recordDate, Employee employee, Boolean workFromHome) {
+		super();
 		this.recordDate = recordDate;
+		this.employee = employee;
+		this.workFromHome = workFromHome;
+	}
+
+	public Timelog(Date recordDate, Employee employee) {
+		super();
+		this.recordDate = recordDate;
+		this.employee = employee;
 	}
 
 	public Date getLoginTime() {
@@ -60,6 +53,11 @@ public class Timelog implements Serializable {
 
 	public void setLoginTime(Date loginTime) {
 		this.loginTime = loginTime;
+		this.loggedIn = true;
+		this.loggedOut = false;
+		this.absent = false;
+		this.workFromHome = false;
+		this.onLeave = false;
 	}
 
 	public Date getLogoutTime() {
@@ -68,6 +66,8 @@ public class Timelog implements Serializable {
 
 	public void setLogoutTime(Date logoutTime) {
 		this.logoutTime = logoutTime;
+		this.loggedIn = false;
+		this.loggedOut = true;
 	}
 
 	public Boolean getWorkFromHome() {
@@ -76,6 +76,7 @@ public class Timelog implements Serializable {
 
 	public void setWorkFromHome(Boolean workFromHome) {
 		this.workFromHome = workFromHome;
+		setComment(workFromHome ? "Working from home" : "");
 	}
 
 	public Boolean getLoggedIn() {
@@ -110,14 +111,6 @@ public class Timelog implements Serializable {
 		this.onLeave = onLeave;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -126,4 +119,19 @@ public class Timelog implements Serializable {
 		this.comment = comment;
 	}
 
+	public Date getRecordDate() {
+		return recordDate;
+	}
+
+	public void setRecordDate(Date recordDate) {
+		this.recordDate = recordDate;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
 }
