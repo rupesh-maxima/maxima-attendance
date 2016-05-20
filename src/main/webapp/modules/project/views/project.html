@@ -1,5 +1,78 @@
 <nav ng-include="'modules/home/views/navigation.html'"></nav>
-<div class="jumbotron text-center">
-    <h1>The HomePage</h1>
-    <p>This page demonstrates <span class="text-danger">nested</span> views.</p>    
+<div class="container" style="height: 410px;" ng-controller="ProjectController">
+<!-- <div class="row" >
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				 <div class="panel-body" >
+				   <table style="width: 100%">
+					<tr>
+						<td width="50%">
+							<h2>Edit Project</h2>
+						</td>
+						<td width="80%" ><a class="navbar-brand" href="" ng-click="meHidden=!meHidden">Add New Project</a></td>
+		             </tr>
+		             </table> 			
+				  </div>
+			</div>
+		</div>	
+	</div> -->
+	
+
+	<div class="row ">
+		<div class="col-md-4 ">
+		<input type="text" placeholder="Project Name" ng-model="filter" style="width:360px; margin-bottom: 10px;" class="form-control" >
+			<div class="panel panel-default" style="height:450px;" >
+			  <div class="panel-body " style="border:1px gray;height:450px; padding: 0;">
+			  <div id="slim-bar" style="overflow:auto;height:450px; padding: 15px;">
+		      <uib-alert ng-repeat="month in months  | filter:filter" type="{{month}}" close="closeAlert($index)" ng-click="edit($event)" style="border:1px solid #afafaf;">{{month}}</uib-alert>
+		      </div>
+			  </div>
+			</div>
+		</div>
+		
+		<div class="col-md-6" ng-show="meHidden" >
+			<div class="panel panel-default">
+			  <div class="panel-body" style="height:400px;">
+				<form name="addProject">
+				<table>
+					<tr>
+						<td><h4>Project Name :</h4></td>
+						<td><input type="text" ng-model="project_name" class="form-control" placeholder="Project Name" name="project_name" required></td>
+							<span ng-show="addProject.project_name.$dirty && addProject.project_name.$error.required"> This field is required</span>
+							
+					</tr>
+					<tr>
+						<td><h4>Project Agreement :</h4></td>
+						<td><input type="text" ng-model="project_agr" class="form-control" placeholder="Project Agreement" name="project_agr" required></td>
+						<span ng-show="addProject.project_agr.$dirty && addProject.project_agr.$error.required"> This field is required</span>
+					</tr>
+					<tr>
+						<td></td>
+						<td><button class="btn btn-sm btn-primary btn-block" type="submit">Add</button></td>
+					</tr>
+				</table>
+				</form>
+				
+			  </div>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+	<div>@MaximaConsulting.com</div>
+	</div>
+	
 </div>
+
+
+<script>
+$(function(){
+    $('#slim-bar').slimScroll({
+        height: '430px',
+        railVisible: true,
+         alwaysVisible: true
+    });
+});
+
+
+</script>
