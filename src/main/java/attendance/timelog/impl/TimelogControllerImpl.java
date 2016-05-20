@@ -11,15 +11,15 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import attendance.common.impl.GenericControllerImpl;
 import attendance.common.utils.DateOperations;
 import attendance.employee.controller.EmployeeController;
 import attendance.employee.model.Employee;
 import attendance.timelog.controller.TimelogController;
 import attendance.timelog.model.Timelog;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 @RestController
 public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implements TimelogController {
@@ -204,6 +204,11 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 		Type listType = new TypeToken<List<Long>>() {
 		}.getType();
 		return gson.fromJson(obj.get("employeeIds").toString(), listType);
+		
+	/*	
+		Type collectionType = new TypeToken<List<Long>>(){}.getType();
+		List<channelSearchEnum> lcs = (List<Long>) new Gson()
+		               .fromJson( obj.get("employeeIds").toString(), collectionType);*/
 	}
 
 	@Override

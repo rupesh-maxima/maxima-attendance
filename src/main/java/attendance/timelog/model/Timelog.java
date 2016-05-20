@@ -76,7 +76,7 @@ public class Timelog implements Serializable {
 
 	public void setWorkFromHome(Boolean workFromHome) {
 		this.workFromHome = workFromHome;
-		setComment(workFromHome ? "Working from home" : "");
+		setComment(workFromHome ? "Working from home" : getComment());
 	}
 
 	public Boolean getLoggedIn() {

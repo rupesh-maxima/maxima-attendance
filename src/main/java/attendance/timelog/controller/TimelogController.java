@@ -13,17 +13,9 @@ import attendance.timelog.model.Timelog;
 
 @RestController
 public interface TimelogController {
-	@RequestMapping(value = "/timelog/add", method = RequestMethod.POST)
-	Timelog add(@RequestBody Timelog timelog);
+	Timelog add(Timelog timelog);
 
-	@RequestMapping(value = "/timelog/update", method = RequestMethod.POST)
-	void update(@RequestBody Timelog existingObj);
-
-	@RequestMapping(value = "/timelog/get"  ,method = { RequestMethod.POST })
-	Timelog get(@RequestBody Long id);
-
-	@RequestMapping(value = "/timelog/getAll", method = RequestMethod.POST)
-	List<Timelog> getAll(@RequestBody List<Long> ids);
+	void update(Timelog existingObj);
 
 	@RequestMapping(value = "/timelog/list", method=RequestMethod.POST)
 	List<Timelog> list();
@@ -31,12 +23,6 @@ public interface TimelogController {
 	@RequestMapping(value = "/timelog/search", method = RequestMethod.POST)
 	List<Timelog> search(@RequestBody String json);
 
-	@RequestMapping(value = "/timelog/delete", method = RequestMethod.POST)
-	void delete(@RequestBody Long id);
-
-	@RequestMapping(value = "/timelog/deleteAll", method = RequestMethod.POST)
-	void deleteAll(@RequestBody List<Long> ids);
-	
 	@RequestMapping(value = "/timelog/setWorkfromHome", method = RequestMethod.POST)
 	void setWorkfromHome(@RequestBody String json);
 	

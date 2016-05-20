@@ -6,7 +6,7 @@ import java.util.Date;
 
 public class DateOperations {
 
-	public static SimpleDateFormat sqlDateFormat= new  SimpleDateFormat("M/dd/yyyy");
+	public static SimpleDateFormat sqlDateFormat= new  SimpleDateFormat("MM/dd/yyyy");
 	public static void main(String[] args){
 //		long date=Date.parse("2/26/2014 12:00:00 AM");
 //		System.out.println(date);
