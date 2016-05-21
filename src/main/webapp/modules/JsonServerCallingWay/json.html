@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>json</title>
+</head>
+<body>
+//...add....
+	{"absent":true,"comment":"fu","loggedIn":true,"loggedOut":true,"loginTime":"2009-02-15T00:00:00Z","logoutTime":"","onLeave":false,"recordDate":"2002-03-02","workFromHome":false,"employee":{"id":1}}
+	//.. search...
+	{"fieldName":"","value":""}
+	//.....setWorkFromHome.....
+	
+	{"recordDate":"03/02/2002","employeeIds":[1,2],"isWorkFromHome":true}
+	//....setOnLeave..
+	{"recordDate":"03/02/2002","employeeIds":[1,2],"isOnLeave":true}
+	//....login..
+	1
+	//....getWorkFromHome....
+	"2016-12-21"
+	//...getOnLeave....
+	"2016-12-21"
+	//../timelog/getAllForMonth
+	"2016-12-21"
+	//.../timelog/getAllForDate..
+	"2016-12-21"
+	//.....getForUserForCurrentDate..
+	2
+	//......./timelog/getAllTimeLogsForEmployeesForMonth
+	{"recordDate":"12/21/2002","employeeIds":[1,2],"isOnLeave":true}
+	//........./timelog/getAllTimeLogsForEmployeesForMonth...
+	{"recordDate":"12/21/2002","employeeIds":[1,2],"isOnLeave":true}
+	//..../timelog/getAllTimeLogsForEmployeesForDate
+	{"recordDate":"12/21/2002","employeeIds":[1,2],"isOnLeave":true}
+	//............../timelog/getForUserForDate......
+	{"recordDate":"12/21/2002","employeeId":2}
+	//.....timelog/getLastLoggedInRecord
+	2
+</body>
+</html>

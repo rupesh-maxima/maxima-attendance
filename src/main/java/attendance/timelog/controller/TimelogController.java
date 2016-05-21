@@ -60,5 +60,5 @@ public interface TimelogController {
 	Timelog getForUserForDate(@RequestBody String json);
 
 	@RequestMapping(value = "/timelog/getLastLoggedInRecord", method = RequestMethod.POST)
-	Timelog getLastLoggedInRecord(Long employeeId);
+	Timelog getLastLoggedInRecord(@RequestBody Long employeeId);
 }

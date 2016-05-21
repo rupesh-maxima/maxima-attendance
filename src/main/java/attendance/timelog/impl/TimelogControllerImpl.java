@@ -75,13 +75,8 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 
 	@Override
 	public List<Employee> getWorkfromHome(Date recordDate) {
-		return entityManager
-				.createQuery(
-						"select t.employee from " + getObjectClass().getName()
-								+ " t where workFromHome = (:workFromHome) and recordDate=(:recordDate)",
-						Employee.class)
-				.setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("workFromHome", true)
-				.getResultList();
+		return entityManager.createQuery("select t.employee from " + getObjectClass().getName()+ " t where recordDate=(:recordDate)  and workFromHome = (:workFromHome) ",Employee.class)
+				.setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("workFromHome", true).getResultList();
 	}
 
 	@Override
@@ -204,11 +199,6 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 		Type listType = new TypeToken<List<Long>>() {
 		}.getType();
 		return gson.fromJson(obj.get("employeeIds").toString(), listType);
-		
-	/*	
-		Type collectionType = new TypeToken<List<Long>>(){}.getType();
-		List<channelSearchEnum> lcs = (List<Long>) new Gson()
-		               .fromJson( obj.get("employeeIds").toString(), collectionType);*/
 	}
 
 	@Override
