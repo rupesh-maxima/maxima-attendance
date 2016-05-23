@@ -34,6 +34,7 @@ public abstract class GenericControllerImpl<T> implements GenericController<T> {
 			entityManager.persist(newObject);
 		} catch (Exception e) {
 			entityManager.getTransaction().rollback();
+			throw e;
 		} finally {
 			if (entityManager.getTransaction().isActive()) {
 				entityManager.getTransaction().commit();
