@@ -35,7 +35,7 @@ angular.module('Project').service('ProjectService',function($http) {
 	};
 	
 	this.update=function(existingObj,callback){
-		this.serviceCaller("POST", '/project/update', "", callback);
+		this.serviceCaller("POST", '/project/update', existingObj, callback);
 	};
 	
 	this.deletee=function(id,callback){

@@ -39,9 +39,6 @@ angular.module('BasicHttpAuthExample', [
             templateUrl: 'modules/home/views/home.html',
         })
  
-        
-        
-   
         .otherwise({ redirectTo: '/login' });
 }])
  
@@ -60,3 +57,4 @@ angular.module('BasicHttpAuthExample', [
             }
         });
     }]);
+
