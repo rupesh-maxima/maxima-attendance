@@ -5,7 +5,6 @@ angular.module('Project').controller('ProjectController', function($scope, Proje
 		$scope.data=response.data;
 	});
 	
-	
 	$scope.closeAlert=function(index){
 		$scope.data.splice(index,1); 
 		alert("Deleted");	
@@ -17,7 +16,6 @@ angular.module('Project').controller('ProjectController', function($scope, Proje
 		    $scope.projectAgr=$scope.data[index].agreement;
 	 };
 	  
-	 
 	 $scope.updateData=function(index,data){
 		 data[index].name=$scope.projectName;
 		 data[index].agreement=$scope.projectAgr;
@@ -26,6 +24,14 @@ angular.module('Project').controller('ProjectController', function($scope, Proje
 				alert("Data Updated");
 			});
 	 };
+	 
+	 $scope.validation=function(index,data){
+			if($scope.projectName==undefined || $scope.projectAgr==undefined){
+				alert("This field can't be empty");
+			}else{
+				 $scope.updateData(index,data);
+			}											
+		};
 	 
 });
 
