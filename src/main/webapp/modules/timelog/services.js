@@ -20,66 +20,66 @@ angular.module('Timelog').service('TimelogService',function($http) {
 			callback(response);
 		});
 	};
-
-	this.get = function(callback) {
+	
+	this.list = function(callback) {
 		this.serviceCaller("POST", '/timelog/list', "", callback);
 	};
 	
 
-	this.list = function(json,callback) {
+	this.search = function(json,callback) {
 		this.serviceCaller("POST", '/timelog/search', "", callback);
 	};
 	
-	this.add=function(json,callback){
+	this.setWorkfromHome=function(json,callback){
 		this.serviceCaller("POST", '/timelog/setWorkfromHome', "", callback);
 	};
 	
-	this.update=function(recordDate,callback){
+	this.getWorkfromHome=function(recordDate,callback){
 		this.serviceCaller("POST", '/timelog/getWorkfromHome', "", callback);
 	};
 	
-	this.deletee=function(recordDate,callback){
+	this.getOnLeave=function(recordDate,callback){
 		this.serviceCaller("POST", '/timelog/getOnLeave', "", callback);
 	};
 	
 	
-	this.getAll=function(json,callback){
+	this.setOnLeave=function(json,callback){
 		this.serviceCaller("POST", '/timelog/setOnLeave', "", callback);
 	};
 	
-	this.search=function(employeeId,callback){
+	this.login=function(employeeId,callback){
 		this.serviceCaller("POST", '/timelog/login', "employeeId", callback);
 	};
 		
-	this.deleteAll=function(employeeId,callback){
+	this.logout=function(employeeId,callback){
 		this.serviceCaller("POST", '/timelog/logout', "employeeId", callback);
 	};
 	
-	this.deleteAll=function(recordDate,callback){
+	this.getAllForMonth=function(recordDate,callback){
 		this.serviceCaller("POST", '/timelog/getAllForMonth', "", callback);
 	};
 	
-	this.deleteAll=function(recordDate,callback){
+	this.getAllForDate=function(recordDate,callback){
 		this.serviceCaller("POST", '/timelog/getAllForDate', "", callback);
 	};
 	
-	this.deleteAll=function(employeeId,callback){
+	this.getForUserForCurrentDate=function(employeeId,callback){
 		this.serviceCaller("POST", '/timelog/getForUserForCurrentDate', "employeeId", callback);
 	};
 
-	this.deleteAll=function(json,callback){
+	this.getAllTimeLogsForEmployeesForMonth=function(json,callback){
 		this.serviceCaller("POST", '/timelog/getAllTimeLogsForEmployeesForMonth', "", callback);
 	};
 	
-	this.deleteAll=function(json,callback){
+	this.getAllTimeLogsForEmployeesForDate=function(json,callback){
 		this.serviceCaller("POST", '/timelog/getAllTimeLogsForEmployeesForDate', "", callback);
 	};
 	
-	this.deleteAll=function(json,callback){
+	this.getForUserForDate=function(json,callback){
 		this.serviceCaller("POST", '/timelog/getForUserForDate', "", callback);
 	};
 	
-	this.deleteAll=function(employeeId,callback){
+	this.getLastLoggedInRecord=function(employeeId,callback){
 		this.serviceCaller("POST", '/timelog/getLastLoggedInRecord', "employeeId", callback);
 	};
 
