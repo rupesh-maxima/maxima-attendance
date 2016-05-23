@@ -5,12 +5,14 @@ angular.module('Authentication', []);
 angular.module('Home',[]);
 angular.module('Project',[]);
 angular.module('Holidays',[]);
+angular.module('Timelog',[]);
 
 angular.module('BasicHttpAuthExample', [
     'Authentication',
     'Home',
     'Project',
     'Holidays',
+    'Timelog',
     'ngRoute',
     'ngCookies'
 ])
@@ -32,6 +34,11 @@ angular.module('BasicHttpAuthExample', [
          .when('/holidays', {
             controller: 'HolidaysController',
             templateUrl: 'modules/holidays/views/holidays.html',
+        })
+        
+        .when('/timelog', {
+            controller: 'TimelogController',
+            templateUrl: 'modules/timelog/view/timelog.html',
         })
         
         .when('/', {

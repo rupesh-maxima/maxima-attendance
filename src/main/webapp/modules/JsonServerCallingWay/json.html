@@ -1,40 +1,241 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
-
-<title>json</title>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+</style>
 </head>
 <body>
-//...add....
-	{"absent":true,"comment":"fu","loggedIn":true,"loggedOut":true,"loginTime":"2009-02-15T00:00:00Z","logoutTime":"","onLeave":false,"recordDate":"2002-03-02","workFromHome":false,"employee":{"id":1}}
-	//.. search...
-	{"fieldName":"","value":""}
-	//.....setWorkFromHome.....
-	
-	{"recordDate":"03/02/2002","employeeIds":[1,2],"isWorkFromHome":true}
-	//....setOnLeave..
-	{"recordDate":"03/02/2002","employeeIds":[1,2],"isOnLeave":true}
-	//....login..
-	1
-	//....getWorkFromHome....
-	"2016-12-21"
-	//...getOnLeave....
-	"2016-12-21"
-	//../timelog/getAllForMonth
-	"2016-12-21"
-	//.../timelog/getAllForDate..
-	"2016-12-21"
-	//.....getForUserForCurrentDate..
-	2
-	//......./timelog/getAllTimeLogsForEmployeesForMonth
-	{"recordDate":"12/21/2002","employeeIds":[1,2],"isOnLeave":true}
-	//........./timelog/getAllTimeLogsForEmployeesForMonth...
-	{"recordDate":"12/21/2002","employeeIds":[1,2],"isOnLeave":true}
-	//..../timelog/getAllTimeLogsForEmployeesForDate
-	{"recordDate":"12/21/2002","employeeIds":[1,2],"isOnLeave":true}
-	//............../timelog/getForUserForDate......
-	{"recordDate":"12/21/2002","employeeId":2}
-	//.....timelog/getLastLoggedInRecord
-	2
+
+<table style="width:20%">
+  <caption>TIMELOG</caption>
+  <tr>
+    <th>TimelogServices</th>
+    <th>Format</th>
+  </tr>
+  <tr>
+    <td>List</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Search</td>
+    <td>{"fieldName":"","value":""}</td>
+  </tr>
+   <tr>
+    <td>setWorkfromHome</td>
+    <td>{"recordDate":"MM/DD/YYYY","employeeIds":[id,id],"isWorkFromHome":boolean</td>
+  </tr>
+   <tr>
+    <td>getWorkfromHome</td>
+    <td>"YYYY-MM-DD"</td>
+  </tr>
+   <tr>
+    <td>getOnLeave</td>
+    <td>"YYYY-MM-DD"</td>
+  </tr>
+   <tr>
+    <td>setOnLeave</td>
+    <td>{"recordDate":"MM/DD/YYYY","employeeIds":[id,id],"isWorkFromHome":boolean}</td>
+  </tr>
+   <tr>
+    <td>login</td>
+    <td>id</td>
+  </tr>
+   <tr>
+    <td>logout</td>
+    <td>id</td>
+  </tr>
+   <tr>
+    <td>getAllForMonth</td>
+    <td>"YYYY-MM-DD"</td>
+  </tr>
+   <tr>
+    <td>getAllForDate</td>
+    <td>"YYYY-MM-DD"</td>
+  </tr>
+   <tr>
+    <td>getForUserForCurrentDate</td>
+    <td>id</td>
+  </tr>
+   <tr>
+    <td>getAllTimeLogsForEmployeesForMonth</td>
+    <td>{"recordDate":"MM/DD/YYY","employeeIds":[id,id],"isWorkFromHome":boolean}</td>
+  </tr>
+   <tr>
+    <td>getAllTimeLogsForEmployeesForDate</td>
+    <td>{"recordDate":"MM/DD/YYY","employeeIds":[id,id],"isWorkFromHome":boolean}</td>
+  </tr>
+   <tr>
+    <td>getForUserForDate</td>
+    <td>{"recordDate":"MM/DD/YYY","employeeIds":[id,id],"isWorkFromHome":boolean}</td>
+  </tr>
+   <tr>
+    <td>getLastLoggedInRecord</td>
+    <td>id</td>
+  </tr></table>
+  
+  <table style="width:20%">
+  <caption>PROJECT</caption>
+   <tr>
+    <th>ProjectServices</th>
+    <th>Format</th>
+  </tr>
+   <tr>
+    <td>add</td>
+    <td>{"agreement":"...","name":"..."}</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>{"id":id,"agreement":"...","name":"..."}</td>
+  </tr>
+   <tr>
+    <td>get</td>
+    <td>id</td>
+  </tr>
+   <tr>
+    <td>getAll</td>
+    <td>[id,id,id]</td>
+  </tr>
+   <tr>
+    <td>list</td>
+    <td></td>
+  </tr>
+   <tr>
+    <td>search</td>
+    <td>{"fieldName":"","value":""}</td>
+  </tr>
+   <tr>
+    <td>delete</td>
+    <td>id</td>
+  </tr>
+   <tr>
+    <td>deleteAllt</td>
+    <td>[id,id,id]</td>
+  </tr>
+</table>
+
+
+  <table style="width:20%">
+  <caption>USER</caption>
+   <tr>
+    <th>UserServices</th>
+    <th>Format</th>
+  </tr>
+   <tr>
+    <td>add</td>
+    <td>{"username":"...","name":"...","password":"....","type":"..."}</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>{"username":"...","name":"...","password":"....","type":"..."}</td>
+  </tr>
+   <tr>
+    <td>get</td>
+    <td>username</td>
+  </tr>
+   <tr>
+    <td>login</td>
+    <td>{"username":"...","name":"...","password":"...","type":"..."}</td>
+  </tr>
+  </table>
+  
+   <table style="width:20%">
+  <caption>HOLIDAY</caption>
+   <tr>
+    <th>HolidayServices</th>
+    <th>Format</th>
+  </tr>
+   <tr>
+    <td>add</td>
+    <td>{"date":"yyyy-dd-mm","description":"...."}</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>{"id":id"date":"yyyy-dd-mm","description":"...."}</td>
+  </tr>
+   <tr>
+    <td>get</td>
+    <td>id</td>
+  </tr>
+  <tr>
+    <td>getAll</td>
+    <td>[id,id,id]</td>
+  </tr>
+  <tr>
+    <td>list</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>getAll</td>
+    <td>[id,id,id]</td>
+  </tr>
+  <tr>
+    <td>search</td>
+    <td>{"fieldName":"","value":""}</td>
+  </tr>
+   <tr>
+    <td>delete</td>
+    <td>id</td>
+  </tr>
+     <tr>
+    <td>deleteAll</td>
+    <td>[id,id,id,....]</td>
+  </tr>
+  </table>
+  
+  
+    <table style="width:20%">
+  <caption>EMPLOYEE</caption>
+   <tr>
+    <th>EmployeeServices</th>
+    <th>Format</th>
+  </tr>
+   <tr>
+    <td>add</td>
+    <td>{"id":id,"firstName":"...","lastName":"...","employeeId":ids,"active":true,"project":{"id":id}}</td>
+  </tr>
+  <tr>
+    <td>update</td>
+    <td>{"id":id,"firstName":"...","lastName":"...","employeeId":ids,"active":true,"project":{"id":id}}</td>
+  </tr>
+   <tr>
+    <td>get</td>
+    <td>id</td>
+  </tr>
+  <tr>
+    <td>getAll</td>
+    <td>[id,id,id]</td>
+  </tr>
+  <tr>
+    <td>list</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>getAll</td>
+    <td>[id,id,id]</td>
+  </tr>
+  <tr>
+    <td>search</td>
+    <td>{"fieldName":"","value":""}</td>
+  </tr>
+   <tr>
+    <td>delete</td>
+    <td>id</td>
+  </tr>
+     <tr>
+    <td>deleteAll</td>
+    <td>[id,id,id,....]</td>
+  </tr>
+  </table>
+
 </body>
 </html>
+   
+   
