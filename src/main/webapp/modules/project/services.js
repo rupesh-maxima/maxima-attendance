@@ -55,8 +55,6 @@ angular.module('Project').service('ProjectService',function($http) {
 		this.serviceCaller("POST", '/project/deleteAll', "", callback);
 	};
 
-
-
 });
 
 

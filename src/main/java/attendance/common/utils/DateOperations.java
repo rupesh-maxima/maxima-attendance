@@ -7,7 +7,7 @@ import java.util.Date;
 public class DateOperations {
 
 	public static SimpleDateFormat sqlDateFormat= new  SimpleDateFormat("M/dd/yyyy");
-	public static void main(String[] args){
+	//public static void main(String[] args){
 //		long date=Date.parse("2/26/2014 12:00:00 AM");
 //		System.out.println(date);
 //		date=Date.parse(new Date().toLocaleString());
@@ -20,10 +20,10 @@ public class DateOperations {
 //		for (final String string : lst) {
 //			System.out.println(string);
 //		}
-		getFirstDateOfMonth(new Date());
+	/*	getFirstDateOfMonth(new Date());
 		System.out.println(getFirstDateOfMonth(new Date()));
 		System.out.println(getLastDateOfMonth(new Date()));
-	}
+	}*/
 	public static int getTodaysDay()
 	{
 		Date dt= new Date();
