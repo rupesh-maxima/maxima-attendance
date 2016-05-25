@@ -1,5 +1,7 @@
 package attendance.employee.impl;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import attendance.common.impl.GenericControllerImpl;
@@ -11,5 +13,10 @@ public class EmployeeControllerImpl extends GenericControllerImpl<Employee> impl
 	@Override
 	public Class<Employee> getObjectClass() {
 		return Employee.class;
+	}
+
+	@Override
+	public List<Employee> getAllActiveEmployees() {
+		return entityManager.createQuery("from " + getObjectClass().getName() + " e where active=(:active)", Employee.class).setParameter("active", true).getResultList();
 	}
 }
