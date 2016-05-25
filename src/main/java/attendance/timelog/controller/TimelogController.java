@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import attendance.employee.model.Employee;
 import attendance.timelog.model.Timelog;
+import attendance.timelog.model.TimelogObject;
 
 @RestController
 public interface TimelogController {
@@ -61,4 +62,7 @@ public interface TimelogController {
 
 	@RequestMapping(value = "/timelog/getLastLoggedInRecord", method = RequestMethod.POST)
 	Timelog getLastLoggedInRecord(@RequestBody Long employeeId);
+
+	@RequestMapping(value = "/timelog/getTimelogsForToday", method = RequestMethod.POST)
+	List<TimelogObject> getTimelogsForToday();
 }

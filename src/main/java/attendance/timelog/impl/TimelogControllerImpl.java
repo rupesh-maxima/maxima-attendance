@@ -17,6 +17,7 @@ import attendance.employee.controller.EmployeeController;
 import attendance.employee.model.Employee;
 import attendance.timelog.controller.TimelogController;
 import attendance.timelog.model.Timelog;
+import attendance.timelog.model.TimelogObject;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -54,38 +55,21 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	}
 
 	private List<Timelog> getAllTimeLogsForEmployeesForDate(List<Long> ids, Date recordDate) {
-		return entityManager
-				.createQuery(
-						"from " + getObjectClass().getName()
-								+ " t join fetch t.employee e where e.id in(:ids) and recordDate=(:recordDate)",
-						getObjectClass())
-				.setParameter("ids", ids).setParameter("recordDate", recordDate).getResultList();
+		return entityManager.createQuery("from " + getObjectClass().getName() + " t join fetch t.employee e where e.id in(:ids) and recordDate=(:recordDate)", getObjectClass()).setParameter("ids", ids).setParameter("recordDate", recordDate).getResultList();
 	}
 
 	private List<Timelog> getAllTimeLogsForEmployeesForMonth(List<Long> ids, Date recordDate) {
-		return entityManager
-				.createQuery(
-						"from " + getObjectClass().getName()
-								+ " t join fetch t.employee e where e.id in(:ids) and recordDate >=(:firstDayOfMonth) and recordDate <=(:lastDayOfMonth)",
-						getObjectClass())
-				.setParameter("ids", ids)
-				.setParameter("firstDayOfMonth", DateOperations.getFirstDateOfMonth(recordDate))
-				.setParameter("lastDayOfMonth", DateOperations.getLastDateOfMonth(recordDate)).getResultList();
+		return entityManager.createQuery("from " + getObjectClass().getName() + " t join fetch t.employee e where e.id in(:ids) and recordDate >=(:firstDayOfMonth) and recordDate <=(:lastDayOfMonth)", getObjectClass()).setParameter("ids", ids).setParameter("firstDayOfMonth", DateOperations.getFirstDateOfMonth(recordDate)).setParameter("lastDayOfMonth", DateOperations.getLastDateOfMonth(recordDate)).getResultList();
 	}
 
 	@Override
 	public List<Employee> getWorkfromHome(Date recordDate) {
-		return entityManager.createQuery("select t.employee from " + getObjectClass().getName()+ " t where recordDate=(:recordDate)  and workFromHome = (:workFromHome) ",Employee.class)
-				.setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("workFromHome", true).getResultList();
+		return entityManager.createQuery("select t.employee from " + getObjectClass().getName() + " t where recordDate=(:recordDate)  and workFromHome = (:workFromHome) ", Employee.class).setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("workFromHome", true).getResultList();
 	}
 
 	@Override
 	public List<Employee> getOnLeave(Date recordDate) {
-		return entityManager
-				.createQuery("select t.employee from " + getObjectClass().getName()
-						+ " t where onLeave = (:onLeave) and recordDate=(:recordDate)", Employee.class)
-				.setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("onLeave", true)
-				.getResultList();
+		return entityManager.createQuery("select t.employee from " + getObjectClass().getName() + " t where onLeave = (:onLeave) and recordDate=(:recordDate)", Employee.class).setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("onLeave", true).getResultList();
 	}
 
 	@Override
@@ -134,20 +118,12 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 
 	@Override
 	public List<Timelog> getAllForMonth(Date recordDate) {
-		return entityManager
-				.createQuery(
-						"from " + getObjectClass().getName()
-								+ " t where recordDate >=(:firstDayOfMonth) and recordDate <=(:lastDayOfMonth)",
-						Timelog.class)
-				.setParameter("firstDayOfMonth", DateOperations.getFirstDateOfMonth(recordDate))
-				.setParameter("lastDayOfMonth", DateOperations.getLastDateOfMonth(recordDate)).getResultList();
+		return entityManager.createQuery("from " + getObjectClass().getName() + " t where recordDate >=(:firstDayOfMonth) and recordDate <=(:lastDayOfMonth)", Timelog.class).setParameter("firstDayOfMonth", DateOperations.getFirstDateOfMonth(recordDate)).setParameter("lastDayOfMonth", DateOperations.getLastDateOfMonth(recordDate)).getResultList();
 	}
 
 	@Override
 	public List<Timelog> getAllForDate(Date recordDate) {
-		return entityManager
-				.createQuery("from " + getObjectClass().getName() + " t where recordDate=(:recordDate)", Timelog.class)
-				.setParameter("recordDate", DateOperations.setZeroTime(recordDate)).getResultList();
+		return entityManager.createQuery("from " + getObjectClass().getName() + " t where recordDate=(:recordDate)", Timelog.class).setParameter("recordDate", DateOperations.setZeroTime(recordDate)).getResultList();
 	}
 
 	@Override
@@ -156,20 +132,13 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	}
 
 	private Timelog getForUserForDate(Long employeeId, Date recordDate) {
-		List<Timelog> timelogs = entityManager
-				.createQuery("from " + getObjectClass().getName()
-						+ " t where t.employee.id = (:employeeId) and recordDate=(:recordDate)", Timelog.class)
-				.setParameter("recordDate", DateOperations.setZeroTime(recordDate))
-				.setParameter("employeeId", employeeId).getResultList();
+		List<Timelog> timelogs = entityManager.createQuery("from " + getObjectClass().getName() + " t where t.employee.id = (:employeeId) and recordDate=(:recordDate)", Timelog.class).setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("employeeId", employeeId).getResultList();
 		return timelogs.isEmpty() ? null : timelogs.get(0);
 	}
 
 	@Override
 	public Timelog getLastLoggedInRecord(Long employeeId) {
-		List<Timelog> timelogs = entityManager
-				.createQuery("from " + getObjectClass().getName()
-						+ " t where t.employee.id = (:employeeId) and loggedIn=(:loggedIn)", Timelog.class)
-				.setParameter("employeeId", employeeId).setParameter("loggedIn", true).getResultList();
+		List<Timelog> timelogs = entityManager.createQuery("from " + getObjectClass().getName() + " t where t.employee.id = (:employeeId) and loggedIn=(:loggedIn)", Timelog.class).setParameter("employeeId", employeeId).setParameter("loggedIn", true).getResultList();
 		return timelogs.isEmpty() ? null : timelogs.get(0);
 	}
 
@@ -205,5 +174,20 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	public Timelog getForUserForDate(String json) {
 		Long id = new JSONObject(json).getLong("employeeId");
 		return getForUserForDate(id, parseDate(json));
+	}
+
+	@Override
+	public List<TimelogObject> getTimelogsForToday() {
+		List<Employee> allActiveEmployees = employeeController.getAllActiveEmployees();
+		List<TimelogObject> timelogObjects = new ArrayList<TimelogObject>();
+		for (Employee employee : allActiveEmployees) {
+			Timelog timelog = getForUserForDate(employee.getId(), new Date());
+			if (timelog == null) {
+				timelog = getLastLoggedInRecord(employee.getId());
+			}
+			TimelogObject object = new TimelogObject(employee, timelog);
+			timelogObjects.add(object);
+		}
+		return timelogObjects;
 	}
 }

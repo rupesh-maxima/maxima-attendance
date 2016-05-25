@@ -19,14 +19,14 @@ public class Timelog implements Serializable {
 	private Date recordDate;
 	@Id
 	private Employee employee;
-
+	
 	private Date loginTime;
 	private Date logoutTime;
-	private Boolean workFromHome;
-	private Boolean loggedIn;
-	private Boolean loggedOut;
-	private Boolean absent;
-	private Boolean onLeave;
+	private Boolean workFromHome = false;
+	private Boolean loggedIn = false;
+	private Boolean loggedOut = false;
+	private Boolean absent = true;
+	private Boolean onLeave = false;
 
 	@Column(length = 150)
 	private String comment;
