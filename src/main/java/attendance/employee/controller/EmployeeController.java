@@ -35,6 +35,6 @@ public interface EmployeeController {
 	@RequestMapping(value = "/employee/deleteAll", method = RequestMethod.POST)
 	void deleteAll(@RequestBody List<Long> ids);
 	
-	@RequestMapping(value = "/timelog/getAllActiveEmployees", method = RequestMethod.POST)
+	@RequestMapping(value = "/employee/getAllActiveEmployees", method = RequestMethod.POST)
 	List<Employee> getAllActiveEmployees();
 }
