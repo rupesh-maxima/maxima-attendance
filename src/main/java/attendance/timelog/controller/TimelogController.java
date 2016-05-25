@@ -37,10 +37,10 @@ public interface TimelogController {
 	void setOnLeave(@RequestBody String json);
 	
 	@RequestMapping(value = "/timelog/login", method = RequestMethod.POST)
-	void login(@RequestBody Long employeeId);
+	TimelogObject login(@RequestBody Long employeeId);
 	
 	@RequestMapping(value = "/timelog/logout", method = RequestMethod.POST)
-	void logout(@RequestBody Long employeeId);
+	TimelogObject logout(@RequestBody Long employeeId);
 	
 	@RequestMapping(value = "/timelog/getAllForMonth", method = RequestMethod.POST)
 	List<Timelog> getAllForMonth(@RequestBody Date recordDate);

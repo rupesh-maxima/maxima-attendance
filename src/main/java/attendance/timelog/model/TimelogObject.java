@@ -7,7 +7,7 @@ import attendance.employee.model.Employee;
 
 public class TimelogObject {
 
-	public final static SimpleDateFormat timeFormat = new SimpleDateFormat("");
+	public final static SimpleDateFormat timeFormat = new SimpleDateFormat("yyyy MMM, dd HH:mm");
 	private Long employeeId;
 	private String firstName;
 	private String lastName;

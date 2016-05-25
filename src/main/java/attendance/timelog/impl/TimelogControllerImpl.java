@@ -76,7 +76,6 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	public void setOnLeave(String json) {
 		Boolean isOnLeave = new JSONObject(json).getBoolean("isOnLeave");
 		setOnLeave(parseIds(json), parseDate(json), isOnLeave);
-
 	}
 
 	private void setOnLeave(List<Long> ids, Date recordDate, Boolean isOnLeave) {
@@ -99,21 +98,23 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	}
 
 	@Override
-	public void login(Long employeeId) {
+	public TimelogObject login(Long employeeId) {
 		Employee employee = employeeController.get(employeeId);
 		Timelog timelog = new Timelog(DateOperations.setZeroTime(new Date()), employee);
 		timelog.setLoginTime(new Date());
-		add(timelog);
+		timelog = add(timelog);
+		return new TimelogObject(employee, timelog);
 	}
 
 	@Override
-	public void logout(Long employeeId) {
+	public TimelogObject logout(Long employeeId) {
 		Timelog timelog = getLastLoggedInRecord(employeeId);
 		if (timelog == null) {
 			timelog = getForUserForDate(employeeId, new Date());
 		}
 		timelog.setLogoutTime(new Date());
 		update(timelog);
+		return new TimelogObject(timelog.getEmployee(), timelog);
 	}
 
 	@Override
@@ -156,7 +157,8 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 		JSONObject obj = new JSONObject(json);
 		try {
 			return DateOperations.sqlDateFormat.parse(obj.getString("recordDate"));
-		} catch (JSONException | ParseException e) {
+		}
+		catch (JSONException | ParseException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -165,8 +167,7 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	private List<Long> parseIds(String json) {
 		JSONObject obj = new JSONObject(json);
 		Gson gson = new Gson();
-		Type listType = new TypeToken<List<Long>>() {
-		}.getType();
+		Type listType = new TypeToken<List<Long>>() {}.getType();
 		return gson.fromJson(obj.get("employeeIds").toString(), listType);
 	}
 
