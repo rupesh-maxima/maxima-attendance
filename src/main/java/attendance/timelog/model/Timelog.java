@@ -25,7 +25,7 @@ public class Timelog implements Serializable {
 	private Boolean workFromHome = false;
 	private Boolean loggedIn = false;
 	private Boolean loggedOut = false;
-	private Boolean absent = true;
+	private Boolean absent = false;
 	private Boolean onLeave = false;
 
 	@Column(length = 150)
@@ -68,6 +68,9 @@ public class Timelog implements Serializable {
 		this.logoutTime = logoutTime;
 		this.loggedIn = false;
 		this.loggedOut = true;
+		this.absent = false;
+		this.workFromHome = false;
+		this.onLeave = false;
 	}
 
 	public Boolean getWorkFromHome() {
@@ -76,6 +79,11 @@ public class Timelog implements Serializable {
 
 	public void setWorkFromHome(Boolean workFromHome) {
 		this.workFromHome = workFromHome;
+		this.workFromHome=true;
+		this.loggedIn = true;
+		this.loggedOut = false;
+		this.absent = false;
+		this.onLeave = false;
 		setComment(workFromHome ? "Working from home" : getComment());
 	}
 
