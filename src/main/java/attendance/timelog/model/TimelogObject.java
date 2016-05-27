@@ -106,7 +106,7 @@ public class TimelogObject {
 			this.workFromHome = false;
 			this.loggedIn = false;
 			this.onLeave = false;
-			this.status[1] = "is logged out at " + timeFormat.format(time);
+			this.status[0] = "is logged out at " + timeFormat.format(time);
 		}
 	}
 
