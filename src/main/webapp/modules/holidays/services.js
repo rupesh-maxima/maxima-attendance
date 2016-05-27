@@ -22,20 +22,20 @@ angular.module('Holidays').service('HolidaysService',function($http) {
 	};
 
 	this.add = function(holiday, callback) {
-		this.serviceCaller("POST", '/holiday/add', "", callback);
+		this.serviceCaller("POST", '/holiday/add', holiday, callback);
 	};
 	
 
 	this.update = function(existingObj,callback) {
-		this.serviceCaller("POST", '/holiday/update', "", callback);
+		this.serviceCaller("POST", '/holiday/update', existingObj, callback);
 	};
 	
 	this.get = function(id,callback) {
-		this.serviceCaller("POST", '/holiday/get', "id", callback);
+		this.serviceCaller("POST", '/holiday/get', id, callback);
 	};
 	
 	this.getAll = function(ids,callback) {
-		this.serviceCaller("POST", '/holiday/getAll', "", callback);
+		this.serviceCaller("POST", '/holiday/getAll', ids, callback);
 	};
 
 	this.list = function(callback) {
@@ -43,15 +43,15 @@ angular.module('Holidays').service('HolidaysService',function($http) {
 	};
 	
 	this.search = function(json,callback) {
-		this.serviceCaller("POST", '/holiday/search', "", callback);
+		this.serviceCaller("POST", '/holiday/search', json, callback);
 	};
 	
 	this.deletee = function(id,callback) {
-		this.serviceCaller("POST", '/holiday/delete', "", callback);
+		this.serviceCaller("POST", '/holiday/delete', id, callback);
 	};
 	
 	this.deleteAll = function(ids,callback) {
-		this.serviceCaller("POST", '/holiday/deleteAll', "", callback);
+		this.serviceCaller("POST", '/holiday/deleteAll', ids, callback);
 	};
 	
 	
