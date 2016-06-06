@@ -37,4 +37,7 @@ public interface EmployeeController {
 	
 	@RequestMapping(value = "/employee/getAllActiveEmployees", method = RequestMethod.POST)
 	List<Employee> getAllActiveEmployees();
+	
+	@RequestMapping(value = "/employee/getAllActiveEmployeesInProject", method = RequestMethod.POST)
+	List<Employee> getAllActiveEmployeesInProject(@RequestBody Long projectId);
 }
