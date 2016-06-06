@@ -74,7 +74,7 @@ public class TimelogControllerImpl extends GenericControllerImpl<Timelog> implem
 	}
 	
 	private List<Employee> getEmployeesWFHInProject(Long id, Date recordDate) {
-		return entityManager.createQuery("select t.employee from " + getObjectClass().getName() + " t where t.employee.Project.id=(:id) and workFromHome = (:workFromHome) and recordDate=(:recordDate) ", Employee.class).setParameter("id", id).setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("workFromHome", true).getResultList();
+		return entityManager.createQuery("select t.employee from " + getObjectClass().getName() + " t where t.employee.project.id=(:id) and workFromHome = (:workFromHome) and recordDate=(:recordDate) ", Employee.class).setParameter("id", id).setParameter("recordDate", DateOperations.setZeroTime(recordDate)).setParameter("workFromHome", true).getResultList();
 	}
 
 	@Override
