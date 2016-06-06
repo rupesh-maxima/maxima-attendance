@@ -19,7 +19,57 @@
 	 background-color: #4682B4;
 	} 
 	
-	</style>
+	.imageAlert {
+    width: 90%;
+    float: left;
+    }
+    
+   .image {
+    width: 60px;
+    height: 60px;
+    float: left;
+    }
+	
+	.thumb {
+	float:left; 
+	position:relative;
+	margin:3px;
+     }
+
+    .thumb img { 
+	border:1px solid #000;
+	vertical-align:bottom;
+   }
+   
+    .thumb:hover {
+	border:0; 
+	z-index:1;
+    }
+
+   .thumb span { 
+	position:absolute;
+	visibility:hidden;
+	float:left; 
+    }
+
+    .thumb:hover span { 
+	visibility:visible;
+	top:37px; left:35px;
+	float:left; 
+    }
+	
+	
+	/* .input-group .form-control {
+	width:180px;
+	} */
+	
+/* * * 	
+* * 	
+ * * .slimScrollDiv, #TimelogListSlim-Bar {
+		overflow: visible!important;
+	}   */  
+	  
+		</style>
 </head>
 
 <body>
@@ -34,6 +84,7 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
 	<script src="scripts/app.js"></script>
 	<script src="scripts/lib/jquery.slimscroll.min.js"></script>
+	<script src="image/profilepic.jpg"></script>
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.js"></script>
 	
@@ -50,7 +101,12 @@
 	<script src="modules/holidays/controllers.js"></script>
 	
 	<script src="modules/timelog/services.js"></script>
+	<script src="modules/timelog/employeeservices.js"></script>
 	<script src="modules/timelog/controllers.js"></script>
+	
+	<script src="modules/workFromHome/services.js"></script>
+	<script src="modules/workFromHome/controllers.js"></script>
+	
 	
 </body>
 
