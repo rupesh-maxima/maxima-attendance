@@ -22,6 +22,6 @@ public class EmployeeControllerImpl extends GenericControllerImpl<Employee> impl
 
 	@Override
 	public List<Employee> getAllActiveEmployeesInProject(Long projectId) {
-		return entityManager.createQuery("select employee from " + getObjectClass().getName() + " e where e.Project.id=(:id) ", Employee.class).setParameter("id", projectId).getResultList();
+		return entityManager.createQuery("from " + getObjectClass().getName() + " e where e.project.id=(:id) ", Employee.class).setParameter("id", projectId).getResultList();
 	}
 }
