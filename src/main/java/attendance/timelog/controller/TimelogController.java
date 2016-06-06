@@ -65,4 +65,7 @@ public interface TimelogController {
 
 	@RequestMapping(value = "/timelog/getTimelogsForToday", method = RequestMethod.POST)
 	List<TimelogObject> getTimelogsForToday();
+
+	@RequestMapping(value = "/timelog/getEmployeesWFHInProject", method = RequestMethod.POST)
+	List<Employee> getEmployeesWFHInProject(@RequestBody String json);
 }

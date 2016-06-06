@@ -1,5 +1,103 @@
 <nav ng-include="'modules/home/views/navigation.html'"></nav>
-<div class="jumbotron text-center">
-    <h1>The HolidayPage</h1>
-    <p>This page demonstrates <span class="text-danger">nested</span> views.</p>    
+<div class="container" style="height: 410px;" ng-controller="HolidaysController">
+	<div class="row ">
+	  <div class="col-md-4 ">
+		 <input type="text" placeholder="Holidays Name" ng-model="filter" style="width:360px; margin-bottom: 10px;" class="form-control" >
+		    <div class="panel panel-default" style="height:450px;" >
+			  <div class="panel-body" style="border:1px gray;height:450px; padding: 0;">
+			  <div id="slim-bar" style="overflow:auto;height:450px; padding: 15px;">
+               <uib-alert ng-repeat="holidaysList in data | filter:filter" type="success" close="closeAlert(holidaysList.id, $index)" ng-click="edit($index)" style="border:1px solid #afafaf;">{{holidaysList.date}} - {{holidaysList.description}}</uib-alert>
+ 		      </div>
+			  </div>
+			</div>
+		</div>
+		
+		
+		<div class="col-md-6" >
+			<div class="panel panel-default">
+			  <div class="panel-body" style="height:490px;">
+				<form name="addHolidays">
+				<table >
+					<tr>
+						<td><h5>DATE :</h5></td>
+						<td>  <p class="input-group"> <input type="text" class="form-control "   uib-datepicker-popup  ng-model="holidaysDate" is-open="popup2.opened" datepicker-options="dateOptions" name="holidays_date" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span><p></td>
+						
+					<tr>
+						<td><h5>Description :</h5></td>
+						<td><input type="text" ng-model="holidaysAgr"  class="form-control" placeholder="description" name="holidays_agr" ng-required="true"></td>
+					</tr>
+					<tr>
+					
+						<td></td>
+						<td><button class="btn btn-sm btn-primary btn-block" ng-if="flag==true" type="submit" ng-click="validation(index,data)" >Update</button>
+                            <button class="btn btn-sm btn-primary btn-block" ng-if="flag!=true" type="submit" ng-hide="flag" ng-click="add()">Add</button>
+                             </td>
+						<!-- <button class="btn btn-sm btn-primary btn-block " type="submit"  ng-click="add()" >Add</button>
+						     <button class="btn btn-sm btn-primary btn-block " type="submit" ng-click="validation(index,data)">Update</button> -->
+					</tr>
+					
+				</table>
+				</form>
+				
+			  </div>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+	<div>@MaximaConsulting.com</div>
+	</div>
+	
 </div>
+
+
+<script>
+ $(function(){
+    $('#slim-bar').slimScroll({
+        height: '430px',
+        railVisible: true,
+         alwaysVisible: true
+    });
+});
+</script>
+<!-- <script>
+ $(function(){$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd'
+ });}); 
+ 
+ 
+/* $("#myDatePicker").datepicker({
+    // The hidden field to receive the date
+    altField: "#dateHidden",
+    // The format you want
+    altFormat: "yy-mm-dd",
+    // The format the user actually sees
+    dateFormat: "dd/mm/yy",
+    onSelect: function (date) {
+        // Your CSS changes, just in case you still need them
+        $('a.ui-state-default').removeClass('ui-state-highlight');
+        $(this).addClass('ui-state-highlight');
+    }
+}); */
+
+/* $('#calendar').datepicker({
+    inline: true,
+    firstDay: 1,
+    changeMonth: false,
+    changeYear: true,
+    showOtherMonths: true,
+    showMonthAfterYear: false,
+    yearRange: "2015:2025",      
+    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    dateFormat: "yy-mm-dd",
+    onSelect: function (date) {
+        alert(date);
+    }
+}); */
+
+
+
+</script> -->
