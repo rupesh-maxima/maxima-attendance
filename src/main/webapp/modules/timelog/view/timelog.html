@@ -1,5 +1,114 @@
 <nav ng-include="'modules/home/views/navigation.html'"></nav>
-<div class="jumbotron text-center">
-    <h1>The TimeLogPage</h1>
-    <p>This page demonstrates <span class="text-danger">nested</span> views.</p>    
+<div class="container" style="height: 410px;"
+	ng-controller="TimelogController">
+	<div class="row ">
+		<div class="col-md-4 ">
+			<input type="text" placeholder="Employee Name" ng-model="filter"
+				style="width: 360px; margin-bottom: 10px;" class="form-control">
+			<div class="panel panel-default">
+				<div id="TimelogListSlim-Bar" class="panel-body "
+					style="border: 1px gray; width: 360px; padding: 5px; height: 450px;">
+
+					<uib-alert ng-repeat="employeeList in data | filter:filter"
+						type="{{employeeList.alertType}}" class="imageAlert "
+						ng-click="edit($index)" style="border:1px solid #afafaf;">
+					<div class="col-md-3 ">
+						<a class="thumb"> <img src="/image/profilepic.jpg"
+							ng-disabled="true" class="image" alt="Placeholder Image">
+							<span><img src="/image/profilepic.jpg"
+								alt="Placeholder Image"></span>
+						</a>
+					</div>
+
+					<div class="col-md-6" style="color: black; width: 70%;">
+						<div style="width: 120%">
+							<h4>
+								<strong>{{employeeList.firstName}}
+									{{employeeList.lastName}}</strong>
+							</h4>
+							<small ng-show="employeeList.status[1]==null">{{employeeList.status[0]}}</small>
+							<div ng-if="employeeList.status[1]!=null">
+								<small>{{employeeList.status[1]}}</small>
+							</div>
+						</div>
+					</div>
+					</uib-alert>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-6" ng-hide="flag!=true">
+			<div class="panel panel-default" style="height: 490px;">
+				<div class="panel-body">
+					<div style="height: 490px; font-size: 40px;" align="center">
+						<h1 id="time"></h1>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="col-md-6" ng-if="flag!=true">
+			<div class="panel panel-default" style="height: 450px;">
+				<div class="panel-body" style="height: 490px;">
+					<form class="form-horizontal">
+						<div class="form-group" style="padding: 15px;">
+							<h3>{{employeeName}}</h3>
+							<p>
+								<small>{{message}}</small>
+							</p>
+							<small>{{logoutMessage}}</small>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-10 ">
+								<button ng-click="login()"
+									ng-if="!data[index].loggedIn && !data[index].onLeave && !data[index].workFromHome && !data[index].dayCount"
+									class="btn btn-info">Login</button>
+								<button ng-click="logout()"
+									ng-if="data[index].loggedIn || data[index].dayCount && (!data[index].onLeave && !data[index].workFromHome)"
+									class="btn btn-info">Log Out</button>
+								<button ng-click="workFromHome()" ng-if="!data[index].dayCount"
+									class="btn btn-primary">Work From Home</button>
+								<button ng-click="onLeave()" ng-if="!data[index].dayCount"
+									class="btn btn-warning">On Leave</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<div>@MaximaConsulting.com</div>
+	</div>
+
+
 </div>
+
+<script>
+	$(function() {
+		$('#TimelogListSlim-Bar').slimScroll({
+			height : '430px',
+			railVisible : true,
+			alwaysVisible : true
+		});
+
+	});
+	function updateClock() {
+		var refresh = 1000;
+		var now = new Date(), months = [ 'January', 'February', 'March',
+				'April', 'May', 'June', 'July', 'August', 'September',
+				'October', 'November', 'December' ]; // you get the idea
+		time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+		date = [ months[now.getMonth()], now.getDate(), now.getFullYear() ]
+				.join(' ');
+		document.getElementById('time').innerHTML = [ date, time ].join(' , ');
+		setTimeout(updateClock, 1000);
+	}
+	updateClock();
+</script>

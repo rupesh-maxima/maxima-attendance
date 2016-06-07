@@ -6,6 +6,7 @@ angular.module('Home',[]);
 angular.module('Project',[]);
 angular.module('Holidays',[]);
 angular.module('Timelog',[]);
+angular.module('workFromHome',[]);
 
 angular.module('BasicHttpAuthExample', [
     'Authentication',
@@ -13,6 +14,7 @@ angular.module('BasicHttpAuthExample', [
     'Project',
     'Holidays',
     'Timelog',
+    'workFromHome',
     'ngRoute',
     'ngCookies'
 ])
@@ -40,6 +42,12 @@ angular.module('BasicHttpAuthExample', [
             controller: 'TimelogController',
             templateUrl: 'modules/timelog/view/timelog.html',
         })
+        
+          .when('/workFromHome', {
+            controller: 'workFromHomeController',
+            templateUrl: 'modules/workFromHome/views/workFromHome.html',
+        })
+        
         
         .when('/', {
             controller: 'HomeController',
