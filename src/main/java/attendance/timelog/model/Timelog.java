@@ -84,6 +84,10 @@ public class Timelog implements Serializable {
 			this.loggedOut = false;
 			this.absent = false;
 			this.onLeave = false;
+		}else if (workFromHome != null && !workFromHome) {
+			if (!(loggedIn || loggedOut || absent || onLeave)) {
+				this.absent = true;
+			}
 		}
 		setComment(workFromHome ? "Working from home" : getComment());
 	}
