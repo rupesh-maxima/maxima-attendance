@@ -38,7 +38,7 @@ public class Timelog implements Serializable {
 		super();
 		this.recordDate = recordDate;
 		this.employee = employee;
-		this.workFromHome = workFromHome;
+		setWorkFromHome(workFromHome);
 	}
 
 	public Timelog(Date recordDate, Employee employee) {
@@ -79,11 +79,12 @@ public class Timelog implements Serializable {
 
 	public void setWorkFromHome(Boolean workFromHome) {
 		this.workFromHome = workFromHome;
-		this.workFromHome=true;
-		this.loggedIn = true;
-		this.loggedOut = false;
-		this.absent = false;
-		this.onLeave = false;
+		if (workFromHome != null && workFromHome) {
+			this.loggedIn = false;
+			this.loggedOut = false;
+			this.absent = false;
+			this.onLeave = false;
+		}
 		setComment(workFromHome ? "Working from home" : getComment());
 	}
 
