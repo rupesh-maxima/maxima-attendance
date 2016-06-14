@@ -1,103 +1,118 @@
 <nav ng-include="'modules/home/views/navigation.html'"></nav>
-<div class="container" style="height: 410px;" ng-controller="HolidaysController">
+<div class="container" style="height: 410px;"
+	ng-controller="HolidaysController">
+
 	<div class="row ">
-	  <div class="col-md-4 ">
-		 <input type="text" placeholder="Holidays Name" ng-model="filter" style="width:360px; margin-bottom: 10px;" class="form-control" >
-		    <div class="panel panel-default" style="height:450px;" >
-			  <div class="panel-body" style="border:1px gray;height:450px; padding: 0;">
-			  <div id="slim-bar" style="overflow:auto;height:450px; padding: 15px;">
-               <uib-alert ng-repeat="holidaysList in data | filter:filter" type="success" close="closeAlert(holidaysList.id, $index)" ng-click="edit($index)" style="border:1px solid #afafaf;">{{holidaysList.date}} - {{holidaysList.description}}</uib-alert>
- 		      </div>
-			  </div>
+		<div class="col-md-4  ">
+			<div class="input-group input-append date " id="datePicker"
+				style="margin-bottom: 10px;">
+				<input type="text" class="form-control" ng-model="id" name="date"
+					style="width: 319px;" /> <span class="input-group-addon"><span
+					class="glyphicon glyphicon-calendar"></span></span>
 			</div>
-		</div>
-		
-		
-		<div class="col-md-6" >
 			<div class="panel panel-default">
-			  <div class="panel-body" style="height:490px;">
-				<form name="addHolidays">
-				<table >
-					<tr>
-						<td><h5>DATE :</h5></td>
-						<td>  <p class="input-group"> <input type="text" class="form-control "   uib-datepicker-popup  ng-model="holidaysDate" is-open="popup2.opened" datepicker-options="dateOptions" name="holidays_date" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span><p></td>
-						
-					<tr>
-						<td><h5>Description :</h5></td>
-						<td><input type="text" ng-model="holidaysAgr"  class="form-control" placeholder="description" name="holidays_agr" ng-required="true"></td>
-					</tr>
-					<tr>
-					
-						<td></td>
-						<td><button class="btn btn-sm btn-primary btn-block" ng-if="flag==true" type="submit" ng-click="validation(index,data)" >Update</button>
-                            <button class="btn btn-sm btn-primary btn-block" ng-if="flag!=true" type="submit" ng-hide="flag" ng-click="add()">Add</button>
-                             </td>
-						<!-- <button class="btn btn-sm btn-primary btn-block " type="submit"  ng-click="add()" >Add</button>
-						     <button class="btn btn-sm btn-primary btn-block " type="submit" ng-click="validation(index,data)">Update</button> -->
-					</tr>
-					
-				</table>
-				</form>
-				
-			  </div>
+				<div class="panel-body"
+					style="border: 1px gray; height: 418px; padding: 0;">
+					<div id="slim-barHoliday"
+						style="overflow: auto; height: 418px; padding: 15px;">
+						<uib-alert ng-repeat="holidaysList in data | filter:id"
+							type="success" close="closeAlert(holidaysList.id, $index)"
+							ng-click="edit($index)" style="border:1px solid #afafaf;">
+						{{holidaysList.description}}-{{holidaysList.date}}</uib-alert>
+					</div>
+				</div>
 			</div>
 		</div>
+		<div class="col-md-6">
+
+			<!-- PANEL SECTION -->
+			<div class="panel panel-default">
+
+				<!-- PANEL HEADING -->
+				<div class="panel-heading">
+					<h4 class="panel-title">Holiday</h4>
+				</div>
+				<!-- END OF PANEL HEADING -->
+
+				<!-- PANEL BODY -->
+				<div class="panel-body" style="height: 420px;">
+
+					<button type="button"
+						class="btn btn-sm btn-primary col-sm-offset-9"
+						style="font-size: 20px; border-radius: 50px; padding-left: 45px; display: block; padding-right: 45px;"
+						ng-if="!flags" ng-click="show()">Add</button>
+
+					<div class="" ng-show="flags" style="width: 500px;">
+						<form name="addHolidays" class="form form-horizontal">
+
+							<div class="form-group">
+								<label for="holidaysDate" class="col-md-3 control-label"
+									style="padding-left: 10px;">Date </label>
+								<div class="col-md-6">
+									<div class="input-group">
+										<input type="text" class="form-control col-md-6"
+											uib-datepicker-popup ng-model="holidaysDate"
+											is-open="popup2.opened" datepicker-options="dateOptions"
+											name="holidays_date" ng-required="true" close-text="Close" />
+										<span class="input-group-addon" ng-click="open2()"> <i
+											class="glyphicon glyphicon-calendar"></i>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="holidays_agr" class="col-md-3 control-label">Description</label>
+								<div class="col-sm-6">
+									<input type="text" ng-model="holidaysAgr" class="form-control"
+										placeholder="description" name="holidays_agr"
+										ng-required="true">
+								</div>
+							</div>
+
+							<div class="btn-group btn-sm col-sm-offset-3" role="group">
+								<button type="button"
+									class="btn btn-sm btn-primary btn-block col-sm-offset-3 "
+									style="width: 100px; text-align: center; line-height: 2;"
+									ng-if="flag==true" type="submit"
+									ng-click="validation(index,data)" ng-disabled="buttonDisabled">Update</button>
+								<button type="button"
+									class="btn btn-sm btn-success btn-block col-sm-offset-3"
+									style="width: 100px; text-align: center; width: 100px; line-height: 2;"
+									ng-hide="flag" ng-click="add()" ng-disabled="buttonDisabled">Add</button>
+								<span ng-class="class"
+									style="text-size: 20px; margin: 4px; margin: 10px; padding: 12px; line-height: 3;">{{showAlert}}</span>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- END OF PANEL BODY -->
+
+			</div>
+			<!-- END OF PANEL SECTION -->
+		</div>
 	</div>
-	
 	<div>
-	<div>@MaximaConsulting.com</div>
+		<div>@MaximaConsulting.com</div>
 	</div>
-	
 </div>
 
-
 <script>
- $(function(){
-    $('#slim-bar').slimScroll({
-        height: '430px',
-        railVisible: true,
-         alwaysVisible: true
-    });
-});
+	$(function() {
+		$('#datePicker').datepicker({
+			format : 'yyyy',
+			viewMode : 'year',
+			minViewMode : 'years'
+		}).on('changeDate', function(e) {
+			$(this).datepicker('hide');
+		});
+	});
+	$(function() {
+		$('#slim-barHoliday').slimScroll({
+			height : '418px',
+			railVisible : true,
+			alwaysVisible : true
+		});
+	});
 </script>
-<!-- <script>
- $(function(){$('.datepicker').datepicker({
-    format: 'yyyy-mm-dd'
- });}); 
- 
- 
-/* $("#myDatePicker").datepicker({
-    // The hidden field to receive the date
-    altField: "#dateHidden",
-    // The format you want
-    altFormat: "yy-mm-dd",
-    // The format the user actually sees
-    dateFormat: "dd/mm/yy",
-    onSelect: function (date) {
-        // Your CSS changes, just in case you still need them
-        $('a.ui-state-default').removeClass('ui-state-highlight');
-        $(this).addClass('ui-state-highlight');
-    }
-}); */
 
-/* $('#calendar').datepicker({
-    inline: true,
-    firstDay: 1,
-    changeMonth: false,
-    changeYear: true,
-    showOtherMonths: true,
-    showMonthAfterYear: false,
-    yearRange: "2015:2025",      
-    dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    dateFormat: "yy-mm-dd",
-    onSelect: function (date) {
-        alert(date);
-    }
-}); */
-
-
-
-</script> -->

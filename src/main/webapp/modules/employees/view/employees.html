@@ -1,0 +1,131 @@
+<nav ng-include="'modules/home/views/navigation.html'"></nav>
+<div class="container" style="height: 410px;"
+	ng-controller="EmployeesController">
+	<div class="row ">
+		<div class="col-md-4 ">
+			<input type="text" placeholder="Employee Name" ng-model="filter"
+				style="width: 360px; margin-bottom: 10px;" class="form-control">
+			<div class="panel panel-default" style="height: 450px;">
+				<div class="panel-body "
+					style="border: 1px gray; height: 450px; padding: 0;">
+					<div id="slim-barEmployee"
+						style="overflow: auto; height: 450px; padding: 15px;">
+						<uib-alert ng-repeat="employeesList in data | filter:filter "
+							type="success" ng-click="edit($index)"
+							style="border:1px solid #afafaf;">{{employeesList.firstName}}
+						{{employeesList.lastName}}</uib-alert>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<!-- PANEL SECTION -->
+			<div class="panel panel-default ">
+
+				<!-- PANEL HEADING -->
+				<div class="panel-heading" style="color: black;>
+					<h4 class="panel-title">Employees</h4>
+				</div>
+				<!-- END OF PANEL HEADING -->
+				<!-- PANEL BODY -->
+				<div class="panel-body" style="height: 455px;">
+					<button type="button"
+						class="btn btn-sm btn-primary col-sm-offset-9"
+						style="font-size: 20px; border-radius: 50px; padding-left: 45px; display: block; padding-right: 45px;"
+						ng-if="!flags" ng-click="show()">Add</button>
+
+					<div class="" ng-show="flags"
+						style="width: 500px; margin-top: 120px auto;">
+						<form name="addHolidays" class="form form-horizontal">
+
+							<div class="form-group">
+								<label for="First name" class="col-md-3 control-label"
+									style="padding-left: 10px;">First Name </label>
+								<div class="col-md-6">
+									<div class="input-group">
+										<input type="text" class="form-control" ng-model="firstName"
+											name="employee_firstName" />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="Last name" class="col-md-3 control-label"
+									style="padding-left: 10px;">Last Name </label>
+								<div class="col-md-6">
+									<div class="input-group">
+										<input type="text" class="form-control " ng-model="lastName"
+											name="employee_lastName" />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="Employee id" class="col-md-3 control-label"
+									style="padding-left: 10px;">Employee ID</label>
+								<div class="col-md-6">
+									<div class="input-group">
+										<input type="number" class="form-control "
+											ng-model="employeeId" name="employee_Id" />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="Project" class="col-md-3 control-label"
+									style="padding-left: 10px;">Project Name </label>
+								<div class="col-md-5">
+									<select class="form-control" ng-model="projectName ">
+										<option value="allProjectList">All Projects</option>
+										<option ng-repeat="projects in projectList | unique:'name'"
+											value="{{projects.name}}">{{projects.name}}</option>
+									</select>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="holidays_agr" class="col-md-3 control-label">Status</label>
+								<div class="col-sm-6">
+									<input type="radio" id="radio1" name="radios"  ng-model="active"
+										ng-value="true"
+										> <label for="radio1">Active</label> <input
+										type="radio" id="radio2" name="radios" ng-model="active"
+										 ng-value="false">
+									<label for="radio2">Inactive</label>
+								</div>
+							</div>
+
+							<div class="btn-group btn-sm col-sm-offset-3" role="group"
+								aria-label="...">
+								<button type="button" class="btn  btn-primary  "
+									style="width: 100px; text-align: center;" ng-if="flag==true"
+									type="submit" ng-click="validation(index,data)" ng-disabled="buttonDisabled">Update</button>
+								<button type="button" class="btn  btn-success " 
+									style="width: 100px; text-align: center;" ng-hide="flag"
+									ng-click="add()" ng-disabled="buttonDisabled">Add</button>
+								<span ng-class="class"
+									style="text-size: 20px; margin: 4px; margin: 10px; padding: 12px; line-height: 3;">{{showAlerts}}</span>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+			<!-- END OF PANEL BODY -->
+		</div>
+		<!-- END OF PANEL SECTION -->
+	</div>
+	<div>@MaximaConsulting.com</div>
+	<div><a  href="modules/employees/view/timeupdate.html">Update Login and Logout time</a></div>
+</div>
+<script src="modules/timelog/services.js"></script>
+	<script src="modules/timelog/controllers.js"></script>
+<script>
+	$(function() {
+		$('#slim-barEmployee').slimScroll({
+			height : '418px',
+			railVisible : true,
+			alwaysVisible : true
+		});
+	});
+</script>

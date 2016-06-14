@@ -56,5 +56,3 @@ angular.module('Holidays').service('HolidaysService',function($http) {
 	
 	
 });
-
-

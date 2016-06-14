@@ -2,6 +2,7 @@ package attendance.employee.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ public class Employee implements Serializable {
 	private String lastName;
 	private Integer employeeId;
 	private Boolean active;
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "projectId")
 	private Project project;
 
