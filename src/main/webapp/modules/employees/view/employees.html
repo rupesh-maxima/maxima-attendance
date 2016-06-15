@@ -76,7 +76,6 @@
 									style="padding-left: 10px;">Project Name </label>
 								<div class="col-md-5">
 									<select class="form-control" ng-model="projectName ">
-										<option value="allProjectList">All Projects</option>
 										<option ng-repeat="projects in projectList | unique:'name'"
 											value="{{projects.name}}">{{projects.name}}</option>
 									</select>
